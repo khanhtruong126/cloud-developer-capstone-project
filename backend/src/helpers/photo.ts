@@ -24,6 +24,6 @@ export const editPhoto = async (
   return photoAccess.editPhoto({ userId, photoKey, photoName })
 }
 
-export const deleteTodo = async (userId: string, photoKey: string) => {
-  return photoAccess.deleteTodo(userId, photoKey)
+export const deletePhoto = async (userId: string, photoKey: string) => {
+  return photoAccess.deletePhoto(userId, photoKey)
 }

@@ -33,7 +33,7 @@ export class PhotoAccess {
     }
   }
 
-  async deleteTodo(userId: string, photoKey: string): Promise<void> {
+  async deletePhoto(userId: string, photoKey: string): Promise<void> {
     try {
       logger.info('Deleting a photo for user', userId, photoKey)
       await this.docClient

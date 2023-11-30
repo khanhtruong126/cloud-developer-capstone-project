@@ -2,7 +2,7 @@ import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 import * as middy from 'middy'
-import { deleteTodo } from '../../helpers/photo'
+import { deletePhoto } from '../../helpers/photo'
 import { getUserId } from '../utils'
 
 export const handler = middy(
@@ -10,7 +10,7 @@ export const handler = middy(
     const photoKey = event.pathParameters.photoKey
     const userId = getUserId(event)
 
-    await deleteTodo(userId, photoKey)
+    await deletePhoto(userId, photoKey)
 
     return {
       statusCode: 202,
