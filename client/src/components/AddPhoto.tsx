@@ -1,8 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { addPhoto, uploadFile } from '../api/photos-api'
+import Auth from '../auth/Auth'
 
-const AddPhoto = ({ auth }) => {
+const AddPhoto = ({ auth }: { auth: Auth}) => {
   const [files, setFiles] = React.useState<any>()
   const history = useHistory()
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
