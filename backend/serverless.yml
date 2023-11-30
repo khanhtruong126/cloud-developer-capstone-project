@@ -19,12 +19,12 @@ provider:
     lambda: true
     apiGateway: true
 
-  # Use these variables in the functions and resouorces section below. For example, 
-  # ${self:provider.environment.ATTACHMENT_S3_BUCKET}
+  # Use these variables in the functions and resouorces section below. For example,
+  # ${self:provider.environment.S3_BUCKET}
   environment:
-    PHOTOS_TABLE: Photos-${self:provider.stage}
+    PHOTOS_TABLE: photos-${self:provider.stage}
     PHOTOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENT_S3_BUCKET: serverless-photos-truongnk3-${self:provider.stage}
+    S3_BUCKET: udacity-cloud-dev-truongnk3-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
   logs:
@@ -32,11 +32,10 @@ provider:
     restApi: true
 
 functions:
-
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
 
-  # TODO(done): Configure this function - 
+  # TODO: Configure this function -
   # Provide iamRoleStatements property for performing Actions on DynamoDB
   GetPhotos:
     handler: src/lambda/http/getPhotos.handler
@@ -164,7 +163,12 @@ resources:
     AttachmentsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:provider.environment.ATTACHMENT_S3_BUCKET}
+        BucketName: ${self:provider.environment.S3_BUCKET}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
         CorsConfiguration:
           CorsRules:
             - AllowedOrigins:
@@ -178,12 +182,13 @@ resources:
                 - DELETE
                 - HEAD
               MaxAge: 3000
+
     BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
         PolicyDocument:
-          Id: UdacityServerlessTodo
-          Version: '2012-10-17'
+          Id: MyBucketPolicy
+          Version: "2012-10-17"
           Statement:
             - Sid: PublicReadForGetBucketObjects
               Effect: Allow
@@ -191,5 +196,5 @@ resources:
               Action:
                 - s3:GetObject
                 - s3:PutObject
-              Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
+              Resource: 'arn:aws:s3:::${self:provider.environment.S3_BUCKET}/*'
         Bucket: !Ref AttachmentsBucket
