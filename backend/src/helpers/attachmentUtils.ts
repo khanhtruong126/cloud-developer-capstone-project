@@ -1,7 +1,8 @@
 import * as AWS from 'aws-sdk'
-import * as AWSXRay from 'aws-xray-sdk'
 
+const AWSXRay = require('aws-xray-sdk')
 const XAWS = AWSXRay.captureAWS(AWS)
+const s3BucketName = process.env.ATTACHMENT_S3_BUCKET;
 
 // TODO: Implement the fileStogare logic
 export async function getPresignedAttachmentUrl(todoId: string): Promise<string> {
@@ -16,4 +17,8 @@ export async function getPresignedAttachmentUrl(todoId: string): Promise<string>
     });
   
     return signedUrl
+  }
+
+  export function getAttachmentUrl(photoKey: string): string {
+    return `https://${s3BucketName}.s3.amazonaws.com/${photoKey}`
   }
