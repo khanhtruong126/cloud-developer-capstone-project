@@ -1,6 +1,6 @@
-import { PhotoAccess } from './photoAcess'
+import { PhotoAccess } from '../dataLayer/photoAcess'
 import { createLogger } from '../utils/logger'
-import { getAttachmentUrl } from './attachmentUtils'
+import { getAttachmentUrl } from '../helpers/attachmentUtils'
 
 const logger = createLogger('PhotoAccess')
 const photoAccess = new PhotoAccess()

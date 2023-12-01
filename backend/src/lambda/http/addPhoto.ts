@@ -5,7 +5,7 @@ import * as AWS from 'aws-sdk'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 import { getUserId } from '../utils'
-import { addPhoto } from '../../helpers/photo'
+import { addPhoto } from '../../businessLogic/photo'
 import { createLogger } from '../../utils/logger'
 
 const AWSXRay = require('aws-xray-sdk')

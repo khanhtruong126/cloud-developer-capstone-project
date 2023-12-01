@@ -3,7 +3,7 @@ import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { cors } from 'middy/middlewares'
 import * as middy from 'middy'
-import { getPhtosForUser } from '../../helpers/photo'
+import { getPhtosForUser } from '../../businessLogic/photo'
 import { getUserId } from '../utils'
 
 // TODO: Get all TODO items for a current user

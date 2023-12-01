@@ -2,7 +2,7 @@ import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 import * as middy from 'middy'
-import { deletePhoto } from '../../helpers/photo'
+import { deletePhoto } from '../../businessLogic/photo'
 import { getUserId } from '../utils'
 
 export const handler = middy(
