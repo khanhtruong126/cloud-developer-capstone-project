@@ -27,6 +27,19 @@ const Photos = ({ auth }: { auth: Auth }) => {
       <h3>Click on a photo to start editing its name</h3>
       {!!loading && <p>Loading...</p>}
       <div>
+        <button
+          disabled={loading}
+          onClick={() => history.push('/photos/add')}
+          style={{
+            width: '10rem',
+            padding: '5px 15px',
+            marginTop: '15px'
+          }}
+        >
+          Add a photo
+        </button>
+      </div>
+      <div>
         {photos.map((photo) => {
           return (
             <>
@@ -37,7 +50,7 @@ const Photos = ({ auth }: { auth: Auth }) => {
                   marginBottom: '3rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
+                  alignItems: 'center'
                 }}
               >
                 <h3>
@@ -64,18 +77,6 @@ const Photos = ({ auth }: { auth: Auth }) => {
                 >
                   Delete
                 </button>
-                <div>
-                  <button
-                    onClick={() => history.push('/photos/add')}
-                    style={{
-                      width: '10rem',
-                      padding: '5px 15px',
-                      marginTop: '15px'
-                    }}
-                  >
-                    Add a photo
-                  </button>
-                </div>
               </div>
             </>
           )
